@@ -1,9 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace GeekShopping.ProductAPI.Data.ValueObjects
+﻿namespace GeekShopping.Web.Models
 {
-    public class ProductVO
+    public class ProductModel
     {
         public long Id { get; set; }
         public string Name { get; set; } = string.Empty;
