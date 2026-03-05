@@ -1,7 +1,17 @@
+using GeekShopping.Web.Services;
+using GeekShopping.Web.Services.IServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var productApiUrl = builder.Configuration["ServiceUrls:ProductAPI"]
+    ?? throw new InvalidOperationException("ServiceUrls:ProductAPI não está configurado");
+
 // Add services to the container.
+
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient<IProductService, ProductService>(c =>
+    c.BaseAddress = new Uri(productApiUrl));
 
 var app = builder.Build();
 
@@ -10,6 +20,7 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+
 app.UseStaticFiles();
 
 app.UseRouting();
