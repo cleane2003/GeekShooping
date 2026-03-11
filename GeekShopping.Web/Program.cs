@@ -1,49 +1,59 @@
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.Extensions.Options;
+using GeekShopping.Web.Services;
+using GeekShopping.Web.Services.IServices;
+using Microsoft.AspNetCore.Authentication;
 
-public class Program
+var builder = WebApplication.CreateBuilder(args);
+
+var productApiUrl = builder.Configuration["ServiceUrls:ProductAPI"]
+    ?? throw new InvalidOperationException("ServiceUrls:ProductAPI não está configurado");
+
+var identityServerUrl = builder.Configuration["ServiceUrls:IdentityServer"]
+    ?? throw new InvalidOperationException("ServiceUrls:IdentityServer não está configurado");
+
+builder.Services.AddHttpClient<IProductService, ProductService>(c =>
+    c.BaseAddress = new Uri(productApiUrl));
+
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication(options =>
 {
-    public static void Main(string[] args)
+    options.DefaultScheme = "Cookies";
+    options.DefaultChallengeScheme = "oidc";
+})
+    .AddCookie("Cookies", c => c.ExpireTimeSpan = TimeSpan.FromMinutes(10))
+    .AddOpenIdConnect("oidc", options =>
     {
-        var builder = WebApplication.CreateBuilder(args);
-
-        // Configure OpenID Connect
-        builder.Services.AddAuthentication(options =>
-        {
-            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-        })
-        .AddCookie()
-        .AddOpenIdConnect(options =>
-        {
-            options.Authority = "{identityServerUrl}";
-            options.ClientId = "your_client_id";
-            options.ClientSecret = "your_client_secret";
-            options.ResponseType = "code";
-            options.SaveTokens = true;
-            options.Scope.Add("openid");
-            options.Scope.Add("profile");
-            options.Scope.Add("geek_shopping");
-            options.Backchannel.BaseAddress = new Uri("{identityServerUrl}");
-
-            options.Events = new OpenIdConnectEvents
-            {
-                OnAuthenticationFailed = context =>
-                {
-                    // Log the failure
-                    Console.WriteLine($"Authentication failed: {context.Exception.Message}");
-                    context.HandleResponse();
-                    context.Response.Redirect("/Home/Error");
-                    return Task.CompletedTask;
-                }
-            };
-        });
-
-        var app = builder.Build();
-        // Configure other middleware
-        app.UseAuthentication();
-        app.UseAuthorization();
-        app.MapControllers();
-        app.Run();
+        options.Authority = identityServerUrl;
+        options.GetClaimsFromUserInfoEndpoint = true;
+        options.ClientId = "geek_shopping";
+        options.ClientSecret = "my_super_secret";
+        options.ResponseType = "code";
+        options.ClaimActions.MapJsonKey("role", "role", "role");
+        options.ClaimActions.MapJsonKey("sub", "sub", "sub");
+        options.TokenValidationParameters.NameClaimType = "name";
+        options.TokenValidationParameters.RoleClaimType = "role";
+        options.Scope.Add("geek_shopping");
+        options.SaveTokens = true;
     }
+);
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
 }
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
