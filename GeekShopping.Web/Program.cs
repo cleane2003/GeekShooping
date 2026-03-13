@@ -10,8 +10,14 @@ var productApiUrl = builder.Configuration["ServiceUrls:ProductAPI"]
 var identityServerUrl = builder.Configuration["ServiceUrls:IdentityServer"]
     ?? throw new InvalidOperationException("ServiceUrls:IdentityServer não está configurado");
 
+var cartApiUrl = builder.Configuration["ServiceUrls:CartAPI"]
+    ?? throw new InvalidOperationException("ServiceUrls:CartAPI não está configurado");
+
 builder.Services.AddHttpClient<IProductService, ProductService>(c =>
     c.BaseAddress = new Uri(productApiUrl));
+
+builder.Services.AddHttpClient<ICartService, CartService>(c =>
+    c.BaseAddress = new Uri(cartApiUrl));
 
 builder.Services.AddControllersWithViews();
 
