@@ -1,19 +1,18 @@
-﻿using GeekShopping.ProductAPI.Model.Context.Seeds;
+﻿using GeekShopping.CouponAPI.Model.Context.Seeds;
 using Microsoft.EntityFrameworkCore;
 
-namespace GeekShopping.ProductAPI.Model.Context
+namespace GeekShopping.CouponAPI.Model.Context
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext() { }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Coupon> Coupons { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            ProductSeed.SeedProducts(modelBuilder);
+            CouponSeed.SeedCoupons(modelBuilder);
         }
     }
 }

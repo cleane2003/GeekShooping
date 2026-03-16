@@ -13,11 +13,17 @@ var identityServerUrl = builder.Configuration["ServiceUrls:IdentityServer"]
 var cartApiUrl = builder.Configuration["ServiceUrls:CartAPI"]
     ?? throw new InvalidOperationException("ServiceUrls:CartAPI não está configurado");
 
+var couponApiUrl = builder.Configuration["ServiceUrls:CouponAPI"]
+    ?? throw new InvalidOperationException("ServiceUrls:CouponAPI não está configurado");
+
 builder.Services.AddHttpClient<IProductService, ProductService>(c =>
     c.BaseAddress = new Uri(productApiUrl));
 
 builder.Services.AddHttpClient<ICartService, CartService>(c =>
     c.BaseAddress = new Uri(cartApiUrl));
+
+builder.Services.AddHttpClient<ICouponService, CouponService>(c =>
+    c.BaseAddress = new Uri(couponApiUrl));
 
 builder.Services.AddControllersWithViews();
 

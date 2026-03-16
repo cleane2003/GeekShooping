@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GeekShopping.ProductAPI.Model.Context.Seeds
 {
-    public static class ProductSeeder
+    public static class ProductSeed
     {
         public static void SeedProducts(ModelBuilder modelBuilder)
         {
