@@ -13,7 +13,7 @@ namespace GeekShopping.ProductAPI.Model.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            ProductSeeder.SeedProducts(modelBuilder);
+            ProductSeed.SeedProducts(modelBuilder);
         }
     }
 }

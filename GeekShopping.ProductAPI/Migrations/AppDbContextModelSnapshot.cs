@@ -31,19 +31,16 @@ namespace GeekShopping.ProductAPI.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("CategoryName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
                         .HasColumnName("category_name");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)")
                         .HasColumnName("description");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("character varying(300)")
                         .HasColumnName("image_url");
@@ -60,98 +57,116 @@ namespace GeekShopping.ProductAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("product");
+                    b.ToTable("product", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = 1L,
-                            CategoryName = "Vestuário",
-                            Description = "Camiseta 100% algodão com estampa de código de programação",
-                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/2_no_internet.jpg?raw=true",
-                            Name = "Camiseta Geek Code",
-                            Price = 69.90m
-                        },
-                        new
-                        {
                             Id = 2L,
-                            CategoryName = "Acessórios",
-                            Description = "Caneca de porcelana com capacidade de 350ml tema Star Wars",
-                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/3_vader.jpg?raw=true",
-                            Name = "Caneca Star Wars Darth Vader",
-                            Price = 39.90m
+                            CategoryName = "T-shirt",
+                            Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/2_no_internet.jpg?raw=true",
+                            Name = "Camiseta No Internet",
+                            Price = 69.9m
                         },
                         new
                         {
                             Id = 3L,
-                            CategoryName = "Colecionáveis",
-                            Description = "Action figure colecionável do personagem Grogu (Baby Yoda) 15cm",
-                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/5_100_doctor.jpg?raw=true",
-                            Name = "Action Figure Baby Yoda",
-                            Price = 189.90m
+                            CategoryName = "Action Figure",
+                            Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/3_vader.jpg?raw=true",
+                            Name = "Capacete Darth Vader Star Wars Black Series",
+                            Price = 999.99m
                         },
                         new
                         {
                             Id = 4L,
-                            CategoryName = "Periféricos",
-                            Description = "Mouse gamer com iluminação RGB, 7 botões programáveis e 16000 DPI",
-                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/6_spaceship.jpg?raw=true",
-                            Name = "Mouse Gamer RGB",
-                            Price = 149.90m
+                            CategoryName = "Action Figure",
+                            Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/4_storm_tropper.jpg?raw=true",
+                            Name = "Star Wars The Black Series Hasbro - Stormtrooper Imperial",
+                            Price = 189.99m
                         },
                         new
                         {
                             Id = 5L,
-                            CategoryName = "Periféricos",
-                            Description = "Teclado mecânico com switches blue, iluminação RGB personalizável",
-                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/7_robot.jpg?raw=true",
-                            Name = "Teclado Mecânico RGB",
-                            Price = 299.90m
+                            CategoryName = "T-shirt",
+                            Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/5_100_gamer.jpg?raw=true",
+                            Name = "Camiseta Gamer",
+                            Price = 69.99m
                         },
                         new
                         {
                             Id = 6L,
-                            CategoryName = "Periféricos",
-                            Description = "Headset gamer com som surround 7.1, microfone removível e LED RGB",
-                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/8_chess.jpg?raw=true",
-                            Name = "Headset Gamer 7.1",
-                            Price = 249.90m
+                            CategoryName = "T-shirt",
+                            Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/6_spacex.jpg?raw=true",
+                            Name = "Camiseta SpaceX",
+                            Price = 49.99m
                         },
                         new
                         {
                             Id = 7L,
-                            CategoryName = "Colecionáveis",
-                            Description = "Boneco colecionável Funko Pop do Batman da DC Comics",
-                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/9_comic_book.jpg?raw=true",
-                            Name = "Funko Pop Batman",
-                            Price = 89.90m
+                            CategoryName = "T-shirt",
+                            Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/7_coffee.jpg?raw=true",
+                            Name = "Camiseta Feminina Coffee Benefits",
+                            Price = 69.9m
                         },
                         new
                         {
                             Id = 8L,
-                            CategoryName = "Acessórios",
-                            Description = "Mochila para laptop até 17 polegadas com compartimentos para periféricos",
-                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/10_shirt.jpg?raw=true",
-                            Name = "Mochila Laptop Gamer",
-                            Price = 179.90m
+                            CategoryName = "Sweatshirt",
+                            Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/8_moletom_cobra_kay.jpg?raw=true",
+                            Name = "Moletom Com Capuz Cobra Kai",
+                            Price = 159.9m
                         },
                         new
                         {
                             Id = 9L,
-                            CategoryName = "Livros",
-                            Description = "Livro Clean Code de Robert C. Martin - Guia para código limpo",
-                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/11_book.jpg?raw=true",
-                            Name = "Livro Clean Code",
-                            Price = 79.90m
+                            CategoryName = "Book",
+                            Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/9_neil.jpg?raw=true",
+                            Name = "Livro Star Talk – Neil DeGrasse Tyson",
+                            Price = 49.9m
                         },
                         new
                         {
                             Id = 10L,
-                            CategoryName = "Periféricos",
-                            Description = "Webcam com resolução Full HD 1080p, microfone embutido e foco automático",
-                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/12_space_suit.jpg?raw=true",
-                            Name = "Webcam Full HD 1080p",
-                            Price = 199.90m
+                            CategoryName = "Action Figure",
+                            Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/10_milennium_falcon.jpg?raw=true",
+                            Name = "Star Wars Mission Fleet Han Solo Nave Milennium Falcon",
+                            Price = 359.99m
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            CategoryName = "T-shirt",
+                            Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/11_mars.jpg?raw=true",
+                            Name = "Camiseta Elon Musk Spacex Marte Occupy Mars",
+                            Price = 59.99m
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            CategoryName = "T-shirt",
+                            Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/12_gnu_linux.jpg?raw=true",
+                            Name = "Camiseta GNU Linux Programador Masculina",
+                            Price = 59.99m
+                        },
+                        new
+                        {
+                            Id = 13L,
+                            CategoryName = "T-shirt",
+                            Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                            ImageUrl = "https://github.com/leandrocgsi/erudio-microservices-dotnet6/blob/main/ShoppingImages/13_dragon_ball.jpg",
+                            Name = "Camiseta Goku Fases",
+                            Price = 59.99m
                         });
                 });
 #pragma warning restore 612, 618

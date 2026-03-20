@@ -3,6 +3,7 @@ using GeekShopping.BaseAPI.Repository;
 using GeekShopping.ProductAPI.Data.ValueObjects;
 using GeekShopping.ProductAPI.Model;
 using GeekShopping.ProductAPI.Model.Context;
+using GeekShopping.ProductAPI.Repository.Interfaces;
 
 namespace GeekShopping.ProductAPI.Repository
 {
