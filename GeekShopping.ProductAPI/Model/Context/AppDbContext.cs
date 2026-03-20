@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GeekShopping.ProductAPI.Model.Context.Seeds;
+using Microsoft.EntityFrameworkCore;
 
 namespace GeekShopping.ProductAPI.Model.Context
 {
@@ -12,9 +13,7 @@ namespace GeekShopping.ProductAPI.Model.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Product>()
-                .Property(p => p.Price)
-                .HasPrecision(18, 2);
+            ProductSeed.SeedProducts(modelBuilder);
         }
     }
 }
