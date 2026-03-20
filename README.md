@@ -215,10 +215,10 @@ Acesse a documentação interativa em: `https://localhost:5001/swagger`
 
 ## 👨‍💻 Autor
 
-**Cleane Oliveira**
+**Cleane Batista**
 
 - GitHub: [@cleane2003](https://github.com/cleane2003)
-- 📧 Email: [seu-email@exemplo.com]
+- 📧 Email: [cleaneevelin04@gmail.com]
 
 ---
 
